@@ -203,7 +203,7 @@ body{
   font-size: 3em;
   position: absolute;
   align-self: flex-start;
-  top: -10%;
+  top: -12%;
 }
 .hidden{
   display: none;
