@@ -7,7 +7,7 @@ const
   container= document.getElementById('container'),
   main_screen_buttons= document.querySelectorAll('.main-screen'),
   game_screen= document.querySelectorAll('.game-screen'),
-  answers= [28,2,20,50,13,12,13260,324,10,26],
+  answers= [2,50,28,12,20,13,324,10,26,13260],
   levels= document.getElementsByClassName('level'),
   social= document.getElementById('social'),
   back= document.getElementById('backnote'),
@@ -16,10 +16,10 @@ const
   idea_icon=document.getElementById('icon'),
   keys= document.querySelectorAll('.key'),
   sounds=document.getElementsByClassName('sounds'),
-  final_screen=document.getElementById('final-screen'),
   keyboard=document.getElementById('keyboard'),
   about=document.getElementById('about'),
-  win_sound=document.getElementById('win-sound');
+  win_sound=document.getElementById('win-sound'),
+  level_counter=document.getElementById('level-counter');
 // para los clicks
 button_key.forEach(key=>{
   key.addEventListener('click',()=>{
@@ -55,25 +55,30 @@ enter.addEventListener('click',()=>{
    levels[index].style.display='block';
    keyboard.style.display='none';
    sound(sounds[5]);
- }
- if(innerWidth<=480){
+   level_counter.style.display='none';
+   container.classList.add('error')
+   setTimeout(()=>{
+    container.classList.remove('error');
+  },7000)
+  }
+ if(innerWidth<=1024){
   back.style.display='inline-block'
   hints[index-1].style.transform='scale(.0001)'
 }
 else{
   hints[index].style.transform == 'translateX(100%)' ?  idea_icon.src='./icons/idea2.png' : idea_icon.src='./icons/idea.png';
 }
+level_counter.innerHTML=`Level ${index + 1}`
 });
 // hint button 
 hint_button.addEventListener('click',()=>{
-  if(innerWidth<=480){  
+  if(innerWidth<=1024){  
     hints[index].style.transform = hints[index].style.transform == 
                                                                   'scale(1)'?
                                                                   'scale(.001)':
                                                                   'scale(1)';
     hints[index].style.zIndex='10';
     hints[index].style.transform == 'scale(1)' ?  idea_icon.src='./icons/idea2.png' : idea_icon.src='./icons/idea.png';
-    back.style.display= back.style.display=='inline-block'?'none':'inline-block'
   }
   else{
     hints[index].style.transform = hints[index].style.transform == 
