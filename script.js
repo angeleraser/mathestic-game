@@ -2,7 +2,8 @@
 const levels = [...document.querySelectorAll('.level')],
       hints = [...document.querySelectorAll('.hint_img')],
       // array con todas las respuestas 
-      answers = [2,50,28,12,20,13,324,10,26,13260,820,65536,'5',60,196];
+      answers = ['2','50','28','12','20','13','324','10','26','13260','820','65536','5','60','196','25','6','1515',25, '77'],
+      comment = document.getElementById('comment');
  //Botones
 const answer_input = document.getElementById('input'),
       enter = document.getElementById('enter'),
@@ -101,8 +102,30 @@ class Screen {
     this.screen.classList.add('hidden');
   }
 }
-const SCREEN=[]; //Array con todas las pantallas
-const LEVEL=[]; // Array con todos los niveles
+class Comments {
+  constructor(el,comment){
+    this.box = el;
+    this.comment = comment;
+  }
+  showComment(txt){
+    if(error_counter%4 == 0){
+      let c_i = Math.ceil(Math.random()*19)
+    txt = this.comment[c_i];
+    this.box.style.top = '0%';
+    this.box.innerHTML = `${txt}`
+    setTimeout(()=>{
+      this.box.style.top = '-100%';
+    },2300)
+  }
+    }
+}
+const COMMENTS_txt = ['¿Al menos sabes cuanto es 2 + 2?','Mi perro resolvió esto más rápido y él no tiene internet',
+                   'Deberías reconsiderar cursar primaria una vez más… ','¿A poco si está difícil? ','Ríndete y aprovecha en otra cosa la poca dignidad que te queda',
+                   'Vamos, tu puedes, solo debes equivocarte inifinitamente hasta encontrar la respuesta', 'Aristóteles está llorando ahora mismo …',
+                   'Creo que es más  fácil que dejes de jugar…','Me gusta cuando te equivocas', 'Tu y Bad Bunny son igual de inteligentes','Creo que esa no es la respuesta, creo no más..','La vida te dió limones, ¿sabes qué hacer?','Equivocarse es poder,¿ o cómo era?','Gracias a ti las matematicas son exactas','Detente, por favor..', 'No sigas, quiérete un poco','Anda, utiliza la calculadora','¿Sabes sumar y restar?', 'Einstein se revuelca en su tumba', '¿1 + 1 es igual a?']
+const SCREEN = []; //Array con todas las pantallas
+const LEVEL = []; // Array con todos los niveles
+const BOX_COMMENT = new Comments(comment,COMMENTS_txt)
 // Funcion constructora del nivel que toma como parametros tres listas : nivel, pistas y respuestas
 function createLevel(lvl,hnt,ans){
   // Nombre e imagen del nivel 
@@ -134,21 +157,25 @@ function playSound(s){
 }
 const main_screen = SCREEN[0],game_screen = SCREEN [1];
 // AQUI EMPIEZAN LAS INTERACCIONES 
-let levelIndex=0;
+let levelIndex = 0;
+let error_counter = 0;
 // Click enter
 enter.addEventListener('click',()=>{
   if(answer_input.value == LEVEL[levelIndex].answer){
     levelIndex++;
     // CUANDO LLEGA AL NIVEL FINAL 
     if(levelIndex >= LEVEL.length){
+      // OCULTA NIVEL Y PISTA FINAL 
         LEVEL[levelIndex - 1].hidden();
         LEVEL[levelIndex - 1].hiddenHint();
         game_screen.hiddenScreen();
         final_screen.classList.remove('hidden');
         container.shaking();
         answer_input.value="";
+        // SE REINICIA EL INDICE PARA JUGAR DE NUEVO 
         levelIndex=0;
         LEVEL[levelIndex].hiddenHint();
+        error_counter = 0;
     }
     // SI TODAVIA NO HA LLEGADO 
     else{
@@ -162,12 +189,14 @@ enter.addEventListener('click',()=>{
   }
   // RESPUESTA EQUIVOCADA 
   else{
+    BOX_COMMENT.showComment();
     answer_input.value="";
     answer_input.setAttribute('placeholder','WRONG!');
     setTimeout(()=>{
       answer_input.setAttribute('placeholder','ANSWER')
     },1000);
     container.shaking();
+    error_counter++;
   }
 });
 // boton de pista 
