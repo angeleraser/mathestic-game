@@ -108,7 +108,7 @@ class Comments {
     this.comment = comment;
   }
   showComment(txt){
-    if(error_counter%4 == 0){
+    if(error_counter%5 == 0){
       let c_i = Math.ceil(Math.random()*19)
     txt = this.comment[c_i];
     this.box.style.top = '0%';
@@ -158,7 +158,7 @@ function playSound(s){
 const main_screen = SCREEN[0],game_screen = SCREEN [1];
 // AQUI EMPIEZAN LAS INTERACCIONES 
 let levelIndex = 0;
-let error_counter = 0;
+let error_counter = 1;
 // Click enter
 enter.addEventListener('click',()=>{
   if(answer_input.value == LEVEL[levelIndex].answer){
