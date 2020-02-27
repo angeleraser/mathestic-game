@@ -8,7 +8,7 @@
   --screen:rgb(80, 79, 79);
 }
 body{
-  background-image: linear-gradient(gray,black);
+  background-image: linear-gradient(gray, hsl(240, 60%,40%));
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
@@ -44,6 +44,15 @@ body{
     right: -4px;
   }
 }
+.screen-game{
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+
 /* PANTALLA PRINCIPAL */
 /* BOTONES  */
 .screen-button{
@@ -67,8 +76,8 @@ body{
   width: 28px;
 }
 .idea-icon{
-  height: 100%;
-  width: 100%;
+  height: 70%;
+  width: 70%;
 }
 .me{
   color: black;
@@ -95,15 +104,6 @@ body{
   height: 70%;
   position: relative;
   width: 95%;
-}
-.final-screen{
-  color:gold;
-  text-align: center;
-  line-height: 1.5;
-  align-items: center;
-  display: flex;
-  height: 100%;
-  width: 100%;
 }
 /* TECLADO E INPUTS  */
 .keyboard{
@@ -151,7 +151,7 @@ body{
   justify-content: center;
 }
 .button:active{
-  transform: scale(.90);
+  transform: scale(.9);
 }
 .screen-button{
   background-color: #fff;
@@ -160,6 +160,7 @@ body{
   border-bottom: 2px solid black;
 }
 .back-button{
+  display: none;
   height: 60px;
   position: absolute;
   top: 1%;
@@ -183,30 +184,35 @@ body{
   width: 100%;
 }
 .level{
+  position: absolute;
   display: none;
   width: 100%;
   height: 100%;
 }
-.level:nth-child(2){
+.level:nth-child(1){
   display: block;
 }
 .hint_img{
+  opacity: .9;
   height: 99.9%;
-  display:inline-block;
+  display:none;
   transform: translateX(0%);
   position: absolute;
   transition: all .3s;
   z-index: -10;
 }
-.level-counter{
-  /* font-weight: bold; */
-  font-size: 3em;
-  position: absolute;
-  align-self: flex-start;
-  top: -10%;
+.hint_img:nth-child(11){
+  display: block;
 }
 .hidden{
   display: none;
+}
+.level_counter{
+  font-weight: bold;
+  top: 65%;
+  z-index: 20;
+  position: absolute;
+  font-size: 1.5em;
 }
 @media screen and (max-width:1100px){
   .back-button{
@@ -219,9 +225,7 @@ body{
     transform: scale(.4);
   }
   .hint_img{
+    opacity: 1;
     transform: scale(.001);
-  }
-  .level-counter{
-    font-size: 2.5em;
   }
 }

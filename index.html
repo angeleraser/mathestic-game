@@ -9,46 +9,37 @@
 </head>
 <body>
   <div id="container"class="container"> 
-    <!-- BACK BUTTON  -->
-    <div id="backnote" class="back-button hidden"><img src="./icons/back.png" alt="" srcset=""></div>
+     <!-- BACK BUTTON  -->
+     <div id="back-button" class="back-button"><img src="./icons/back.png" alt="" srcset=""></div>
+    <!-- PANTALLA PRINCIPAL 1 -->
+   <div class="screen-game">
     <!-- TITULO  -->
     <div class="title main-screen">Mathestic!</div>
     <!-- BOTONES PRINCIPALES  -->
-    <div class="screen-button play button main-screen">PLAY</div>
-    <div class="screen-button follow button main-screen">FOLLOW ME</div>
-    <!-- PANTALLA DE REDES SOCIALES -->
-    <div id="social" class="social hidden">
-      <img src="./icons/icons8-facebook-24.png" alt="" class="icon"><a target="_blank" href="https://www.facebook.com/angeleraserr" class="me">@angeleraser</a>
-      <img src="./icons/icons8-google-24.png" alt="" class="icon"><a href="#" class="me">@angeleraser</a>
-      <img src="./icons/icons8-twitter-24.png" alt="" class="icon"><a target="_blank" href="https://twitter.com/angeleraser" class="me">@angeleraser</a>
-    </div>
-    <!-- PANTALLA DE ABOUT  -->
-    <div class="screen-button about button main-screen">ABOUT</div>
-    <div id="about" class="about-container hidden">
-    <p class="desc">
-      Inspirado en Math de Google Play
-    </p>
-    <p>
-      El juego consta de 10 desafios de logica matematica, ¡piensalo bien!.
-    </p>
-    <p class="version">
-      Mathestic v1.01
-    </p>
-  </div>
-    <!-- PANTALLA DE JUEGO -->
-    <div class="screen game-screen hidden">
-      <div id="level-counter" class="level-counter">Level 1</div>
+    <div id="play-button" class="screen-button play button main-screen">PLAY</div>
+    <div id="follow-button" class="screen-button follow button main-screen">FOLLOW ME</div>
+    <div id="about-button" class="screen-button about button main-screen">ABOUT</div>
+   </div>
+   <!-- PANTALLA DEL JUEGO -->
+   <div class="screen-game hidden">
+     <!-- LEVEL COUNTER -->
+    <div id="level-counter" class="level_counter"></div>
+    <div class="screen game-screen">
       <img src="./levels/level_1.png" alt="" class="level" id="level1">
       <img src="./levels/level_2.png" alt="" class="level" id="level2">
       <img src="./levels/level_3.png" alt="" class="level" id="level3">
-      <img src="./levels/level_4.png" alt="lvl4" class="level" id="level4">
+      <img src="./levels/level_4.png" alt="" class="level" id="level4">
       <img src="./levels/level_5.png" alt="" class="level" id="level5">
       <img src="./levels/level_6.png" alt="" class="level" id="level6">
       <img src="./levels/level_7.png" alt="" class="level" id="level7">
       <img src="./levels/level_8.png" alt="" class="level" id="level8">
       <img src="./levels/level_9.png" alt="" class="level" id="level9">
       <img src="./levels/level_10.png" alt="" class="level" id="level10">
-      <img src="./levels/final-screen.png" alt="" class="level">
+      <img src="./levels/level_11.png" alt="" class="level" id="level11">
+      <img src="./levels/level_12.png" alt="" class="level" id="level12">      
+      <img src="./levels/level_13.png" alt="" class="level" id="level13">      
+      <img src="./levels/level_14.png" alt="" class="level" id="level14">     
+      <img src="./levels/level_15.png" alt="" class="level" id="level15">     
       <img src="./hints/hint_1.png" alt="" class="hint_img">
       <img src="./hints/hint_2.png" alt="" class="hint_img">
       <img src="./hints/hint_3.png" alt="" class="hint_img">
@@ -59,13 +50,18 @@
       <img src="./hints/hint_8.png" alt="" class="hint_img">
       <img src="./hints/hint_9.png" alt="" class="hint_img">
       <img src="./hints/hint_10.png" alt="" class="hint_img">
+      <img src="./hints/hint_11.png" alt="" class="hint_img">
+      <img src="./hints/hint_12.png" alt="" class="hint_img">
+      <img src="./hints/hint_13.png" alt="" class="hint_img">
+      <img src="./hints/hint_14.png" alt="" class="hint_img">
+      <img src="./hints/hint_12.png" alt="" class="hint_img">
     </div>
     <!-- TECLADO -->
-    <div id="keyboard" class="keyboard game-screen hidden">
+    <div id="keyboard" class="keyboard game-screen">
       <div class="input-container">
-        <input id="input" class="answer input" placeholder="Answer">
-        <div id="erase" class="erase button input">X</div>
-        <div id="hint" class="hint erase button">
+        <input id="input" class="answer input" placeholder="ANSWER">
+        <div id="erase-button" class="erase button input">X</div>
+        <div id="hint-button" class="hint erase button">
           <img id="icon" src="./icons/idea.png" alt="" srcset="" class="idea-icon">
         </div>
       <div class="enter input button" id="enter">ENTER</div>
@@ -83,12 +79,37 @@
         <div class="key button button-key" data-key="9">9</div>
       </div>
     </div>
+   </div>
+   <!-- PANTALLA FINAL  -->
+   <img id="final-screen" class="hidden" src="./levels/final-screen.png" alt="">
+   <!-- PANTALLA DE REDES SOCIALES -->
+    <div class="screen-game hidden">
+    <div id="social" class="social">
+      <img src="./icons/icons8-facebook-24.png" alt="" class="icon"><a target="_blank" href="https://www.facebook.com/angeleraserr" class="me">@angeleraser</a>
+      <img src="./icons/icons8-google-24.png" alt="" class="icon"><a href="#" class="me">@angeleraser</a>
+      <img src="./icons/icons8-twitter-24.png" alt="" class="icon"><a target="_blank" href="https://twitter.com/angeleraser" class="me">@angeleraser</a>
+    </div>
+    </div>
+    <!-- PANTALLA DE ABOUT  -->
+    <div class="screen-game hidden">
+      <div id="about" class="about-container">
+        <p class="desc">
+          Inspirado en Math de Google Play
+        </p>
+        <p>
+          El juego consta de 10 desafios de logica matematica, ¡piensalo bien!.
+        </p>
+        <p class="version">
+          Mathestic v1.01
+        </p>
+      </div>
+    </div>
   </div>
-  <audio src="./sounds/menuback.wav" class="sounds"></audio>
-  <audio src="./sounds/sectionfail.wav" class="sounds"></audio>
-  <audio src="./sounds/sectionpass.mp3" class="sounds"></audio>
-  <audio src="./sounds/hint.wav" class="sounds"></audio>
-  <audio src="./sounds/MenuHit.wav" class="sounds"></audio>
-  <audio src="./sounds/win-sound.wav" class="sounds"></audio>
+  <audio src="./sounds/menuback.wav" class="sound"></audio>
+  <audio src="./sounds/sectionfail.wav" class="sound"></audio>
+  <audio src="./sounds/sectionpass.mp3" class="sound"></audio>
+  <audio src="./sounds/hint.wav" class="sound"></audio>
+  <audio src="./sounds/MenuHit.wav" class="sound"></audio>
+  <audio src="./sounds/win-sound.wav" class="sound"></audio>
 </body>
 </html>
