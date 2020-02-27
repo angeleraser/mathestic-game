@@ -48,7 +48,7 @@ const container = document.getElementById('container');
 class Level {
   constructor(name,lvl,hint,ans){
     // nombre 
-    this.name=`Level ${name+1}`;
+    this.name=`Nivel ${name+1}`;
     // imagen del nivel 
     this.level=lvl;
     // imagen de la pista 
@@ -191,9 +191,9 @@ enter.addEventListener('click',()=>{
   else{
     BOX_COMMENT.showComment();
     answer_input.value="";
-    answer_input.setAttribute('placeholder','WRONG!');
+    answer_input.setAttribute('placeholder','ERROR!');
     setTimeout(()=>{
-      answer_input.setAttribute('placeholder','ANSWER')
+      answer_input.setAttribute('placeholder','RESPUESTA')
     },1000);
     container.shaking();
     error_counter++;
