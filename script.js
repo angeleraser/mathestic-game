@@ -139,14 +139,17 @@ let levelIndex=0;
 enter.addEventListener('click',()=>{
   if(answer_input.value == LEVEL[levelIndex].answer){
     levelIndex++;
+    // CUANDO LLEGA AL NIVEL FINAL 
     if(levelIndex >= LEVEL.length){
-        LEVEL[levelIndex-1].hidden();
+        LEVEL[levelIndex - 1].hidden();
         game_screen.hiddenScreen();
         final_screen.classList.remove('hidden');
         container.shaking();
         answer_input.value="";
         levelIndex=0;
+        LEVEL[levelIndex].hiddenHint();
     }
+    // SI TODAVIA NO HA LLEGADO 
     else{
     LEVEL[levelIndex].show()
     levelIndex > 0 ? LEVEL[levelIndex - 1].hidden() : LEVEL[levelIndex].show();
@@ -192,11 +195,13 @@ screen_button.forEach( btn =>{
     LEVEL[levelIndex].show();
     final_screen.classList.add('hidden');
   });
+  // BACK BOTON 
   back_button.addEventListener('click',()=>{
     back_button.style.display = back_button.style.display == 'inline-block' ? 'none' : 'inline-block';
     main_screen.showScreen();
     SCREEN[screen_button.indexOf(btn)+1].hiddenScreen();
     playSound(menu_back_sound);
     final_screen.classList.add('hidden');
+    answer_input.value=``;
   })
 });
