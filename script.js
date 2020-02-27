@@ -142,6 +142,7 @@ enter.addEventListener('click',()=>{
     // CUANDO LLEGA AL NIVEL FINAL 
     if(levelIndex >= LEVEL.length){
         LEVEL[levelIndex - 1].hidden();
+        LEVEL[levelIndex - 1].hiddenHint();
         game_screen.hiddenScreen();
         final_screen.classList.remove('hidden');
         container.shaking();
