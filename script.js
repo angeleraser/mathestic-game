@@ -2,7 +2,7 @@
 const levels = [...document.querySelectorAll('.level')],
       hints = [...document.querySelectorAll('.hint_img')],
       // array con todas las respuestas 
-      answers = [2,50,28,12,20,13,324,10,26,13260,820,65536,'10',60,196];
+      answers = [2,50,28,12,20,13,324,10,26,13260,820,65536,'5',60,196];
  //Botones
 const answer_input = document.getElementById('input'),
       enter = document.getElementById('enter'),
