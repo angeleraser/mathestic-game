@@ -59,12 +59,12 @@ class Level {
   // mostrar nivel
   show(){
     this.level.style.display='block';
-    this.hint.style.display='block'
+    this.hint.style.display='block';
   }
   // ocultar nivel
   hidden(){
     this.level.style.display='none';
-    this.hint.style.transform='translateX(0%)';
+    innerWidth <= 1100 ? this.hint.style.transform = 'scale(.001)': this.hint.style.transform='translateX(0%)';
   }
   // mostrar y ocultar pista 
   showHint(){
@@ -77,15 +77,11 @@ class Level {
       this.hint.style.transform = this.hint.style.transform == 'translateX(100%)'? 'translateX(0%)' : 'translateX(100%)';
     }
     // ENCENDER/APAGAR BOMBILLO DE PISTA 
-    if(this.hint.style.transform == 'scale(1)' || this.hint.style.transform == 'translateX(100%)'){
-      hint_img.src='./icons/idea2.png'
-    }
-    else{
-      hint_img.src='./icons/idea.png'
-    }
+    (this.hint.style.transform == 'scale(1)' || this.hint.style.transform == 'translateX(100%)')? hint_img.src='./icons/idea2.png' :hint_img.src='./icons/idea.png';
   }
   // OCULTAR PISTA CUANDO SE PASA DE NIVEL 
   hiddenHint(){
+    hint_img.src='./icons/idea.png'
     this.hint.style.display='none';
   }
 }
@@ -108,21 +104,21 @@ class Comments {
     this.comment = comment;
   }
   showComment(txt){
-    if(error_counter%5 == 0){
-      let c_i = Math.ceil(Math.random()*19)
+    if(error_counter%4 == 0){
+      let c_i = Math.ceil(Math.random()*20)
     txt = this.comment[c_i];
     this.box.style.top = '0%';
     this.box.innerHTML = `${txt}`
     setTimeout(()=>{
       this.box.style.top = '-100%';
-    },2300)
+    },2500)
   }
     }
 }
 const COMMENTS_txt = ['¿Al menos sabes cuanto es 2 + 2?','Mi perro resolvió esto más rápido y él no tiene internet',
                    'Deberías reconsiderar cursar primaria una vez más… ','¿A poco si está difícil? ','Ríndete y aprovecha en otra cosa la poca dignidad que te queda',
                    'Vamos, tu puedes, solo debes equivocarte inifinitamente hasta encontrar la respuesta', 'Aristóteles está llorando ahora mismo …',
-                   'Creo que es más  fácil que dejes de jugar…','Me gusta cuando te equivocas', 'Tu y Bad Bunny son igual de inteligentes','Creo que esa no es la respuesta, creo no más..','La vida te dió limones, ¿sabes qué hacer?','Equivocarse es poder,¿ o cómo era?','Gracias a ti las matematicas son exactas','Detente, por favor..', 'No sigas, quiérete un poco','Anda, utiliza la calculadora','¿Sabes sumar y restar?', 'Einstein se revuelca en su tumba', '¿1 + 1 es igual a?']
+                   'Creo que es más  fácil que dejes de jugar…','Me gusta cuando te equivocas', 'Tu y Bad Bunny son igual de inteligentes','Creo que esa no es la respuesta, creo no más..','La vida te dió limones, ¿sabes qué hacer?','Equivocarse es poder,¿ o cómo era?','Gracias a ti las matematicas son exactas','Detente, por favor..', 'No sigas, quiérete un poco','Anda, utiliza la calculadora','¿Sabes sumar y restar?', 'Einstein se revuelca en su tumba', '¿1 + 1 es igual a?','Nadie mejor que tú']
 const SCREEN = []; //Array con todas las pantallas
 const LEVEL = []; // Array con todos los niveles
 const BOX_COMMENT = new Comments(comment,COMMENTS_txt)
@@ -159,8 +155,8 @@ const main_screen = SCREEN[0],game_screen = SCREEN [1];
 // AQUI EMPIEZAN LAS INTERACCIONES 
 let levelIndex = 0;
 let error_counter = 1;
-// Click enter
-enter.addEventListener('click',()=>{
+// FUNCION DE HACER CLICK EN ENTER 
+function enter_click(){
   if(answer_input.value == LEVEL[levelIndex].answer){
     levelIndex++;
     // CUANDO LLEGA AL NIVEL FINAL 
@@ -174,7 +170,6 @@ enter.addEventListener('click',()=>{
         answer_input.value="";
         // SE REINICIA EL INDICE PARA JUGAR DE NUEVO 
         levelIndex=0;
-        LEVEL[levelIndex].hiddenHint();
         error_counter = 0;
     }
     // SI TODAVIA NO HA LLEGADO 
@@ -185,7 +180,7 @@ enter.addEventListener('click',()=>{
     playSound(section_pass);
     LEVEL[levelIndex - 1].hiddenHint();
     level_counter.innerHTML=`${LEVEL[levelIndex].name}`;
-    }
+    } 
   }
   // RESPUESTA EQUIVOCADA 
   else{
@@ -198,7 +193,9 @@ enter.addEventListener('click',()=>{
     container.shaking();
     error_counter++;
   }
-});
+}
+// Click enter
+enter.addEventListener('click', enter_click);
 // boton de pista 
 hint_button.addEventListener('click', ()=>{
   LEVEL[levelIndex].showHint();
